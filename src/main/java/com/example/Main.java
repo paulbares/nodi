@@ -24,7 +24,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.sql.DataSource;
@@ -59,10 +61,10 @@ public class Main {
     return "index";
   }
 
-  @RequestMapping("/v1/visa/nc")
+  @RequestMapping(value = "/v1/visa/nc", method = RequestMethod.POST)
   @ResponseBody
-  String visaNotificationCallback() {
-    return "Visa notification callback called!";
+  String visaNotificationCallback(@RequestBody Object payload) {
+    return "Visa notification callback called, payload is: " + payload;
   }
 
   @RequestMapping("/hello")
