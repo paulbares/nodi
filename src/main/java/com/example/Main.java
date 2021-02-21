@@ -25,6 +25,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -57,6 +58,19 @@ public class Main {
   String test() {
     return "index";
   }
+
+  @RequestMapping("/v1/visa/nc")
+  @ResponseBody
+  String visaNotificationCallback() {
+    return "Visa notification callback called!";
+  }
+
+  @RequestMapping("/hello")
+  @ResponseBody
+  String home() {
+    return "Hello World!";
+  }
+
 
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
