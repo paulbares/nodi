@@ -36,10 +36,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Controller
 @SpringBootApplication
 public class Main {
+
+  private final static Logger LOGGER = Logger.getLogger(Main.class.getName());
 
   @Value("${spring.datasource.url}")
   private String dbUrl;
@@ -64,6 +67,7 @@ public class Main {
   @RequestMapping(value = "/v1/visa/nc", method = RequestMethod.POST)
   @ResponseBody
   String visaNotificationCallback(@RequestBody Object payload) {
+    LOGGER.info("Payload received: " + payload);
     return "Visa notification callback called, payload is: " + payload;
   }
 
